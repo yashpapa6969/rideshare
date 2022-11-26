@@ -9,7 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:rideshare/Assistants/assistantMethods.dart';
 import 'package:rideshare/Assistants/requestAssistant.dart';
 import 'package:rideshare/DataHandler/appData.dart';
+import 'package:rideshare/screens/appointments.dart';
 import 'package:rideshare/screens/maps.dart';
+import 'package:rideshare/screens/offerappoin1.dart';
 import 'package:rideshare/screens/searchScreen.dart';
 import 'package:rideshare/widgets/Divider.dart';
 import 'package:rideshare/widgets/progressDialog.dart';
@@ -327,6 +329,40 @@ class _TakeState extends State<Take> {
                   ),
                 ),
               ),
+              SizedBox(height: 20,),
+              Container(
+                  width: width,
+                  height: 50,
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: const Color(0xffff9040),),
+                    onPressed: () async{
+
+
+
+                      // Sign the user in (or link) with the credential
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  offered()));
+
+
+
+
+                    },
+
+                    child: Container(
+                      width: 71.13,
+                      child: const Text(
+                        "Verify",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: "Lato",
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  )),
             ],
           ),
         ),

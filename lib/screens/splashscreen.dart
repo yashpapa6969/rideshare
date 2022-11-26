@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rideshare/main.dart';
 import 'package:lottie/lottie.dart';
+import 'package:rideshare/screens/slider.dart';
 
 
 
@@ -21,7 +22,7 @@ class _Splash2 extends State<Splash2> {
     Timer(
         const Duration(seconds: 5),
             () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const MyApp())));
+            context, MaterialPageRoute(builder: (context) =>  slider())));
   }
 
   @override

@@ -16,6 +16,12 @@ import 'package:rideshare/widgets/progressDialog.dart';
 
 
 import 'offer_ride.dart';
+class Item {
+  const Item(this.name, this.img1, this.img2);
+  final String name;
+  final String img1;
+  final String img2;
+}
 Set<Marker> markersSet = {};
 Set<Circle> circlesSet = {};
 List<LatLng> pLineCoordinates = [];
@@ -48,6 +54,17 @@ class MapSampleState extends State<MapSample>with TickerProviderStateMixin {
   late TabController _tabController;
 
  late DirectionDetails tripDirectionDetails;
+  List<Item> carType = <Item>[
+    Item('Car', 'lib/assets/images/budget-active.png', 'lib/assets/images/car-deactive.png'),
+    Item('Budget', 'lib/assets/images/budget-active.png', 'lib/assets/images/budget-deactive.png'),
+    Item('Tuk Tuk', 'lib/assets/images/tuk-tuk-active.png', 'lib/assets/images/tuk-tuk-deactive.png'),
+    Item('City', 'lib/assets/images/city-active.png', 'lib/assets/images/city-deactive.png'),
+    Item('Van', 'lib/assets/images/van-active.png', 'lib/assets/images/van-deactive.png'),
+  ];
+  int type = 0;
+  double deviceHeight = 0;
+  double deviceWidth = 0;
+
 
 
   @override
@@ -63,6 +80,14 @@ class MapSampleState extends State<MapSample>with TickerProviderStateMixin {
   }
 
   Widget build(BuildContext context) {
+   var deviceHeight = MediaQuery
+        .of(context)
+        .size
+        .height;
+   var deviceWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
     DirectionDetails tripDirectionDetails;
 
     late GoogleMapController newGoogleMapController;
@@ -101,6 +126,51 @@ class MapSampleState extends State<MapSample>with TickerProviderStateMixin {
         child: Padding(padding: const EdgeInsets.only(top: 20),
           child: Column(
             children: [
+          Container(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              color: Colors.white
+          ),
+          child: Row(
+            children: List.generate(carType.length, (index) {
+              return Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        type = index;
+                      });
+                    },
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(carType[index].name,
+                            style: TextStyle(
+                                fontSize: 14,
+                                color: type == index ? Color.fromARGB(255,94, 95, 102) : Color.fromARGB(255,204, 204, 204)
+                            ),
+                          ),
+                          Container(
+                            width: double.infinity,
+                            height: 50,
+                            child: Image(
+                              image: index == type ? AssetImage(carType[index].img1) : AssetImage(carType[index].img2),
+                              width: 50,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+              );
+            }),
+          ),
+        ),
 
 
               Container(height: height*0.60,

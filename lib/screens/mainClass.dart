@@ -6,11 +6,17 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rideshare/screens/aboutScreen.dart';
 import 'package:rideshare/screens/appointments.dart';
+import 'package:rideshare/screens/history.dart';
 import 'package:rideshare/screens/home.dart';
 import 'package:rideshare/screens/maps.dart';
 import 'package:rideshare/screens/messages.dart';
 import 'package:rideshare/screens/offer_ride.dart';
+import 'package:rideshare/screens/payment.dart';
+import 'package:rideshare/screens/person_verify.dart';
+import 'package:rideshare/widgets/Profile.dart';
 import 'package:rideshare/widgets/colorConstantsswipe.dart';
+import 'package:rideshare/widgets/ip.dart';
+import 'package:rideshare/widgets/req.dart';
 
 import 'abc.dart';
 import 'swipemain.dart';
@@ -72,9 +78,9 @@ class _MainScreenState extends State<MainScreen> {
     List<Widget> _widgetOptions = <Widget>[
       MapSample(),
       Upcoming(),
-      req(),
+      creditCard(),
       Example(),
-      ChatPage(),
+      Chat(),
 
 
     ];
@@ -97,12 +103,12 @@ class _MainScreenState extends State<MainScreen> {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text("dvzd", style: TextStyle(fontSize: 16.0, fontFamily: "Brand Bold"),),
+                          const Text("User", style: TextStyle(fontSize: 16.0, fontFamily: "Brand Bold"),),
                           const SizedBox(height: 6.0,),
                           GestureDetector(
                               onTap: ()
                               {
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=> AboutScreen()));
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfileScreen()));
                               },
                               child: const Text("Visit Profile")
                           ),
@@ -121,7 +127,7 @@ class _MainScreenState extends State<MainScreen> {
               GestureDetector(
                 onTap: ()
                 {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Offer()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>  history()));
                 },
                 child: const ListTile(
                   leading: Icon(Icons.history),
@@ -131,26 +137,37 @@ class _MainScreenState extends State<MainScreen> {
               GestureDetector(
                 onTap: ()
                 {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Offer()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>  Person()));
                 },
                 child: const ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text("Visit Profile", style: TextStyle(fontSize: 15.0),),
+                  leading: Icon(Icons.history),
+                  title: Text("Verification", style: TextStyle(fontSize: 15.0),),
                 ),
               ),
               GestureDetector(
                 onTap: ()
                 {
                   Navigator.push(context, MaterialPageRoute(builder: (context)=> const Offer()));
+                },
+                child: const ListTile(
+                  leading: Icon(Icons.notification_add),
+                  title: Text("Notifications", style: TextStyle(fontSize: 15.0),),
+                ),
+              ),
+              GestureDetector(
+                onTap: ()
+                {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>  history()));
                 },
                 child: const ListTile(
                   leading: Icon(Icons.info),
-                  title: Text("About", style: TextStyle(fontSize: 15.0),),
+                  title: Text("SOS", style: TextStyle(fontSize: 15.0),),
                 ),
               ),
               GestureDetector(
                 onTap: ()
                 {
+                  Navigator.pop(context);
 
                 },
                 child: const ListTile(
@@ -277,7 +294,7 @@ class _MainScreenState extends State<MainScreen> {
                           ? Column(
                         children: [
                           ImageIcon(
-                            Image.asset('assets/icons/image.png')
+                            Image.asset('assets/icons/bookingActive.png')
                                 .image,
                             size: 20.0,
                           ),
@@ -294,7 +311,7 @@ class _MainScreenState extends State<MainScreen> {
                       )
                       //background: rgba(246, 220, 220, 1);
                           : ImageIcon(
-                        Image.asset('assets/icons/image.png').image,
+                        Image.asset('assets/icons/booking.png').image,
                         size: 20.0,
                       ),
                     ],
@@ -347,7 +364,7 @@ class _MainScreenState extends State<MainScreen> {
                           ? Column(
                         children: [
                           ImageIcon(
-                            Image.asset('assets/icons/notifications.png')
+                            Image.asset('assets/icons/shopActive.png')
                                 .image,
                             size: 20.0,
                           ),
@@ -362,7 +379,7 @@ class _MainScreenState extends State<MainScreen> {
                         ],
                       )
                           : ImageIcon(
-                        Image.asset('assets/icons/notifications.png').image,
+                        Image.asset('assets/icons/shop.png').image,
                         size: 20.0,
                       ),
                     ],

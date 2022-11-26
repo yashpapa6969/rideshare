@@ -86,11 +86,7 @@ class SwipeCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Image(
-                              image: Image.asset("assets/icons/bniYear.png").image,
-                              height: 23,
-                              width: 23,
-                            ),
+
                             const SizedBox(
                               width: 10,
                             ),

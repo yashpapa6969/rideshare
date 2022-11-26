@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:rideshare/DataHandler/appData.dart';
+import 'package:rideshare/screens/appointments.dart';
 import 'package:rideshare/screens/searchScreen.dart';
 import 'package:rideshare/widgets/Divider.dart';
 
@@ -315,6 +316,40 @@ class _OfferState extends State<Offer> with TickerProviderStateMixin{
                   ),
                 ),
               ),
+              SizedBox(height: 20,),
+              Container(
+                  width: width,
+                  height: 50,
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: const Color(0xffff9040),),
+                    onPressed: () async{
+
+
+
+                      // Sign the user in (or link) with the credential
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  Upcoming()));
+
+
+
+
+                    },
+
+                    child: Container(
+                      width: 71.13,
+                      child: const Text(
+                        "Verify",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontFamily: "Lato",
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  )),
 
           ]),
         ),

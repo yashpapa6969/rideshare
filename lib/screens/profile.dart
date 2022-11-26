@@ -365,7 +365,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               padding: const EdgeInsets.all(10),
                               child: Center(
                                 child: ImageIcon(
-                                  Image.asset('assets/icons/locationIcon.png').image,
+                                  Image.asset('assets/icons/petIcon.png').image,
                                   color: ConstantColors.primaryColor,
                                 ),
                               ),
@@ -423,7 +423,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               padding: const EdgeInsets.all(10),
                               child: Center(
                                 child: ImageIcon(
-                                  Image.asset('assets/icons/callIcon.png').image,
+                                  Image.asset('assets/icons/accompIcon.png').image,
                                   color: ConstantColors.primaryColor,
                                 ),
                               ),
@@ -436,7 +436,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Accmplishments",
+                                "Accomplishments",
                                 style: TextStyle(
                                   fontSize: 12.0,
                                   fontFamily: "regular",
@@ -477,7 +477,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               padding: const EdgeInsets.all(10),
                               child: Center(
                                 child: ImageIcon(
-                                  Image.asset('assets/icons/callIcon.png').image,
+                                  Image.asset('assets/icons/img_1.png').image,
                                   color: ConstantColors.primaryColor,
                                 ),
                               ),
@@ -531,7 +531,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               padding: const EdgeInsets.all(10),
                               child: Center(
                                 child: ImageIcon(
-                                  Image.asset('assets/icons/callIcon.png').image,
+                                  Image.asset('assets/icons/skillIcon.png').image,
                                   color: ConstantColors.primaryColor,
                                 ),
                               ),
@@ -585,7 +585,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               padding: const EdgeInsets.all(10),
                               child: Center(
                                 child: ImageIcon(
-                                  Image.asset('assets/icons/callIcon.png').image,
+                                  Image.asset('assets/icons/sponsor.png').image,
                                   color: ConstantColors.primaryColor,
                                 ),
                               ),
@@ -639,7 +639,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               padding: const EdgeInsets.all(10),
                               child: Center(
                                 child: ImageIcon(
-                                  Image.asset('assets/icons/callIcon.png').image,
+                                  Image.asset('assets/icons/hobbiessIcon.png').image,
                                   color: ConstantColors.primaryColor,
                                 ),
                               ),
