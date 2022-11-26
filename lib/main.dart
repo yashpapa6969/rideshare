@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:rideshare/DataHandler/appData.dart';
 import 'package:rideshare/screens/login.dart';
 
 import 'screens/sign.dart';
@@ -20,9 +22,12 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(body: Splash2()),
+    return  ChangeNotifierProvider(
+      create: (context)=> AppData(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(body: Splash2()),
+      ),
     );
   }
 }
