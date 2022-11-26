@@ -19,8 +19,8 @@ class _SignupState extends State<Signup> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return MaterialApp(
-      home: Scaffold(
+    return
+      Scaffold(
         backgroundColor: const Color(0xff252525),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -148,7 +148,7 @@ class _SignupState extends State<Signup> {
                             ),
                             onPressed: () {
                               Navigator.push(
-                                  context, MaterialPageRoute(builder: (context) => const Verify(phoneNumber: '',)));
+                                  context, MaterialPageRoute(builder: (context) =>  Verify()));
                             },
                             child: Container(
                                 alignment: Alignment.center,
@@ -168,7 +168,7 @@ class _SignupState extends State<Signup> {
             ]),
           ),
         ),
-      ),
+
     );
   }
 }

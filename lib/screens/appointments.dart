@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rideshare/main.dart';
 import 'package:rideshare/models/appointment_model.dart';
 import 'package:rideshare/screens/profile.dart';
 import 'package:rideshare/widgets/colorConstantsswipe.dart';
+
+import '../widgets/req.dart';
 
 class Upcoming extends StatefulWidget {
   const Upcoming({Key? key}) : super(key: key);
@@ -29,7 +32,10 @@ class _UpcomingState extends State<Upcoming>
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return Scaffold(
+    body:SafeArea(
+      child:
+      ListView.builder(
       scrollDirection: Axis.vertical,
       controller: ScrollController(),
       itemCount: riders.length,
@@ -206,7 +212,7 @@ class _UpcomingState extends State<Upcoming>
                             SizedBox(width: 15,),
 
 
-                            Text(
+                            Text("Rs"+
                               riders[i].Bids,
                               style: const TextStyle(
                                 fontFamily: 'Roboto',
@@ -223,12 +229,36 @@ class _UpcomingState extends State<Upcoming>
                           ],
                         ),
                       ),
-                    ],
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  Chat()));
+
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color(0x99c2d4ee),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Center(
+                          child: ImageIcon(
+                            Image.asset('assets/icons/done.png').image,
+                            color: ConstantColors.primaryColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )],
                   ),
                 ),
               ],
             ),
           )),
+    )
+    )
     );
   }
 }

@@ -1,14 +1,30 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:rideshare/DataHandler/appData.dart';
+import 'package:rideshare/provider/auth.dart';
+import 'package:rideshare/provider/user_details_provider.dart';
 import 'package:rideshare/screens/login.dart';
 
 import 'screens/sign.dart';
 import 'screens/maps.dart';
 import 'screens/splashscreen.dart';
+import 'package:dart_ipify/dart_ipify.dart';
+import 'package:ecdsa/ecdsa.dart';
+import 'package:elliptic/elliptic.dart';
 
-void main() {
+
+void main() async{
+  final ipv4 = await Ipify.ipv4();
+  print(ipv4);
+  Provider.debugCheckInvalidValueType = null;
+
+  //    "ip_address":"192.168.145.175",
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const App());
 }
 
@@ -22,12 +38,37 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return  ChangeNotifierProvider(
-      create: (context)=> AppData(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(body: Splash2()),
-      ),
+    return
+
+      FutureBuilder(
+        // Initialize FlutterFire
+
+        future: Firebase.initializeApp(),
+    builder: (context, snapshot) {
+    // Check for errors
+
+
+    // Once complete, show your application
+    return MultiProvider(
+        providers: [
+        Provider(create:  (context) => AppData(),),
+          Provider(create:  (context) => UserProvider(),),
+
+
+
+
+        ],
+         child: MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(body: Splash2()),
+    ),
+
+
+    );
+    }
+
+    // Otherwise, show something whilst waiting for initialization to compl
+
     );
   }
 }

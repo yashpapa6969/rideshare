@@ -10,6 +10,8 @@ import 'package:image_cropper/image_cropper.dart';
 
 import 'package:provider/provider.dart';
 
+import '../provider/user_details_provider.dart';
+
 XFile? _pickedFile;
 CroppedFile? _croppedFile;
 
@@ -116,9 +118,8 @@ class _LoginState extends State<Login> {
           });
     }
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return
+     Scaffold(
         backgroundColor: const Color(0xff252525),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -236,17 +237,16 @@ class _LoginState extends State<Login> {
               width: width,
               height: 50,
               padding: const EdgeInsets.only(left: 20, right: 20),
-              child: TextFormField(
+              child: TextField(
                 decoration: const InputDecoration(
                     fillColor: Color(0xffd9d9d9),
                     filled: true,
+
                     border: InputBorder.none),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "yellowbus@gmail.com";
-                  }
-                  return null;
+                onChanged: (value){
+               //   ip_address,nameController.text,driver,,emailController.text,occupationController.text,hobbiesController.text,skillsController.text,interestsController.text,othersController.text)
                 },
+
               ),
             ),
             const SizedBox(
@@ -379,7 +379,7 @@ class _LoginState extends State<Login> {
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 20),
                 child: const Text(
-                  "Residence*",
+                  "liscense No*",
                   style: TextStyle(
                     color: Color(0xff8b8b8b),
                     fontSize: 16,
@@ -399,12 +399,9 @@ class _LoginState extends State<Login> {
                     fillColor: Color(0xffd9d9d9),
                     filled: true,
                     border: InputBorder.none),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "yellowbus@gmail.com";
-                  }
-                  return null;
+                onChanged: (value){
                 },
+
               ),
             ),
             Container(
@@ -503,6 +500,70 @@ class _LoginState extends State<Login> {
                     },
                   ),
                 ),
+                SizedBox(height: 20,),            Container(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.only(left: 20),
+                    child: const Text(
+                      "Hobbies*",
+                      style: TextStyle(
+                        color: Color(0xff8b8b8b),
+                        fontSize: 16,
+                        fontFamily: "Sansation",
+                        fontWeight: FontWeight.w700,
+                      ),
+                    )),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: width,
+                  height: 50,
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                        fillColor: Color(0xffd9d9d9),
+                        filled: true,
+                        border: InputBorder.none),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "yellowbus@gmail.com";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Container(
+                    alignment: Alignment.centerLeft,
+                    padding: const EdgeInsets.only(left: 20),
+                    child: const Text(
+                      "Occupation*",
+                      style: TextStyle(
+                        color: Color(0xff8b8b8b),
+                        fontSize: 16,
+                        fontFamily: "Sansation",
+                        fontWeight: FontWeight.w700,
+                      ),
+                    )),
+                const SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  width: width,
+                  height: 50,
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                        fillColor: Color(0xffd9d9d9),
+                        filled: true,
+                        border: InputBorder.none),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "yellowbus@gmail.com";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
                 SizedBox(height: 20,),
                 Container(
                     width: width,
@@ -528,10 +589,11 @@ class _LoginState extends State<Login> {
                               fontSize: 20,
                             ),
                           )),
+
                     )),
           ])),
         ),
-      ),
+
     );
   }
 }

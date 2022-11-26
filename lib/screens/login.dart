@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -5,6 +6,8 @@ import 'otp_verify.dart';
 
 class Signin extends StatefulWidget {
   const Signin({Key? key}) : super(key: key);
+  static String verify = '';
+
 
   @override
   State<Signin> createState() => _SigninState();
@@ -19,9 +22,11 @@ class _SigninState extends State<Signin> {
     ));
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    final TextEditingController no = TextEditingController();
 
-    return MaterialApp(
-      home: Scaffold(
+
+    return
+      Scaffold(
         backgroundColor: const Color(0xff252525),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -116,7 +121,8 @@ class _SigninState extends State<Signin> {
                         height: 50,
                         padding: const EdgeInsets.only(left: 20, right: 20),
                         child: TextFormField(
-                            keyboardType: TextInputType.number,
+                            keyboardType: TextInputType.phone,
+                            controller: no,
 
 
                             decoration: const InputDecoration(
@@ -147,9 +153,19 @@ class _SigninState extends State<Signin> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0)),
                             ),
-                            onPressed: () {
-                              Navigator.push(
-                                  context, MaterialPageRoute(builder: (context) => const Verify(phoneNumber: '',)));
+
+                            onPressed: () async{
+                              await FirebaseAuth.instance.verifyPhoneNumber(
+                                phoneNumber: '+91'+no.text,
+                                verificationCompleted: (PhoneAuthCredential credential) {},
+                                verificationFailed: (FirebaseAuthException e) {},
+                                codeSent: (String? verificationId, int? resendToken) {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) =>  Verify()));
+
+                                },
+                                codeAutoRetrievalTimeout: (String verificationId) {
+                                },
+                              );
                             },
                             child: Container(
                                 alignment: Alignment.center,
@@ -169,7 +185,7 @@ class _SigninState extends State<Signin> {
             ]),
           ),
         ),
-      ),
+
     );
   }
 }

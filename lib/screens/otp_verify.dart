@@ -1,14 +1,16 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:rideshare/screens/login.dart';
 import 'package:rideshare/screens/mainClass.dart';
 
 class Verify extends StatefulWidget {
-  final String? phoneNumber;
+  final String phoneNumber= "8587979420";
 
-  const Verify({Key? key,required this.phoneNumber}) : super(key: key);
+   Verify({Key? key}) : super(key: key);
 
   @override
   State<Verify> createState() => _VerifyState();
@@ -20,6 +22,7 @@ class _VerifyState extends State<Verify> {
 
   // ignore: close_sinks
   StreamController<ErrorAnimationType>? errorController;
+
 
   bool hasError = false;
   String currentText = "";
@@ -47,15 +50,18 @@ class _VerifyState extends State<Verify> {
     );
   }
   Widget build(BuildContext context) {
+    FirebaseAuth auth = FirebaseAuth.instance;
+
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.white,
       statusBarIconBrightness: Brightness.dark,
     ));
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    var code = "";
 
-    return MaterialApp(
-      home: Scaffold(
+
+      return Scaffold(
           backgroundColor:const Color(0xff252525),
           body: SafeArea(
               child: SingleChildScrollView(
@@ -189,7 +195,6 @@ class _VerifyState extends State<Verify> {
                           onChanged: (value) {
                             debugPrint(value);
                             setState(() {
-                              currentText = value;
                             });
                           },
                           beforeTextPaste: (text) {
@@ -246,24 +251,16 @@ class _VerifyState extends State<Verify> {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   primary: const Color(0xffff9040),),
-                              onPressed: () {
-                                formKey.currentState!.validate();
-// conditions for validating
-                                if (currentText.length != 6 || currentText != "123456") {
-                                  setState(() => hasError = true);
-                                }
-                                else if
-                                ( currentText  == "123456")
-                                  setState(
-                                        () {
-                                      hasError = false;
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) =>  const MainScreen()
-                                      )
+                              onPressed: () async{
 
-                                     );
 
-                                    },
-                                  );
+
+                                   // Sign the user in (or link) with the credential
+                                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  MainScreen()));
+
+
+
+
                               },
 
                               child: Container(
@@ -293,7 +290,7 @@ class _VerifyState extends State<Verify> {
     )
     )
           )
-      )
+
     );
   }
 }
